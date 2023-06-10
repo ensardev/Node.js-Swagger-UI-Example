@@ -13,6 +13,10 @@ Bu projeyi çalıştırmak için aşağıdaki gereksinimlere ihtiyacınız vard�
 ### Kurulum
 
 1. Bu depoyu klonlayın veya ZIP olarak indirin.
+	
+	```bash
+	git clone https://github.com/ensardev/Node.js-Swagger-UI-Example.git
+	```
 
 2. Proje dizinine gidin:
 
