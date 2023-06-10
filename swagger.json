@@ -1,0 +1,125 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "MySimple Node.js API",
+      "description": "Bu Swagger UI hakkında örnek API'dir"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/users": {
+        "get": {
+          "summary": "Tüm kullanıcıları getirir",
+          "responses": {
+            "200": {
+              "description": "Başarılı yanıt",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "name": { "type": "string" },
+                    "email": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Yeni bir kullanıcı ekler",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Eklenen kullanıcı bilgileri",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" },
+                  "email": { "type": "string" }
+                },
+                "required": ["id", "name", "email"]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Başarılı yanıt",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" },
+                  "email": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users/{id}": {
+        "get": {
+          "summary": "Belirtilen ID'ye sahip kullanıcıyı getirir",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Kullanıcının ID'si",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Başarılı yanıt",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" },
+                  "email": { "type": "string" }
+                }
+              }
+            },
+            "400": {
+              "description": "Geçersiz istek"
+            },
+            "404": {
+              "description": "Kullanıcı bulunamadı"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Belirtilen kullanıcıyı siler",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Silinecek kullanıcının ID'si",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Başarılı yanıt"
+            },
+            "400": {
+              "description": "Geçersiz istek"
+            },
+            "404": {
+              "description": "Kullanıcı bulunamadı"
+            }
+          }
+        }
+      }
+    }
+  }
+  
