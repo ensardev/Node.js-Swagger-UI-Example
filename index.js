@@ -20,7 +20,7 @@ app.get('/api/users', (req, res) => {
 app.post('/api/users', (req, res) => {
   const { id, name, email } = req.body;
   if (!id || !name || !email) {
-    return res.status(400).json({ error: 'Missing required fields' });
+    return res.status(400).json({ error: 'Bazı alanlar eksik.' });
   }
   const newUser = { id, name, email };
   router.db.get('users').push(newUser).write();
@@ -31,7 +31,7 @@ app.get('/api/users/:id', (req, res) => {
   const { id } = req.params;
   const user = router.db.get('users').find({ id: parseInt(id) }).value();
   if (!user) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: 'Kullanıcı bulunamadı.' });
   }
   res.json(user);
 });
@@ -40,12 +40,12 @@ app.delete('/api/users/:id', (req, res) => {
   const { id } = req.params;
   const userIndex = router.db.get('users').findIndex({ id: parseInt(id) }).value();
   if (userIndex === -1) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: 'Kullanıcı bulunamadı.' });
   }
   router.db.get('users').splice(userIndex, 1).write();
   res.sendStatus(200);
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server başlatıldı. Port: ${PORT}`);
 });
